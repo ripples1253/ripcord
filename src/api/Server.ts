@@ -37,6 +37,7 @@ import { BodyParser } from "./middlewares/BodyParser";
 import { ErrorHandler } from "./middlewares/ErrorHandler";
 import { initRateLimits } from "./middlewares/RateLimit";
 import { initTranslation } from "./middlewares/Translation";
+import TestClient from "./middlewares/TestClient";
 import { initInstance } from "./util/handlers/Instance";
 import express from "express";
 
@@ -135,9 +136,7 @@ export class FosscordServer extends Server {
 		app.use("/api/v9", api);
 		app.use("/api", api); // allow unversioned requests
 
-		app.get("/", (req, res) =>
-			res.sendFile(path.join(PUBLIC_ASSETS_FOLDER, "index.html")),
-		);
+		TestClient(this.app);
 
 		this.app.use(ErrorHandler);
 

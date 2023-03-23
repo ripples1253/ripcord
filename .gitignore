@@ -10,6 +10,9 @@ assets/cache
 config.json
 assets/cacheMisses
 
+scripts/client.js
+src/api/middlewares/TestClient.ts
+
 .vscode/settings.json
 
 build
