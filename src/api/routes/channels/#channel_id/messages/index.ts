@@ -145,8 +145,8 @@ router.get("/", async (req: Request, res: Response) => {
 			if (!x.author)
 				x.author = User.create({
 					id: "4",
-					discriminator: "0000",
-					username: "Fosscord Ghost",
+					discriminator: "0122",
+					username: "",
 					public_flags: 0,
 				});
 			x.attachments?.forEach((y: Attachment) => {
