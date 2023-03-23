@@ -146,7 +146,7 @@ router.get("/", async (req: Request, res: Response) => {
 				x.author = User.create({
 					id: "4",
 					discriminator: "0122",
-					username: "",
+					username: "Ripley's Father (Ghost)",
 					public_flags: 0,
 				});
 			x.attachments?.forEach((y: Attachment) => {
