@@ -26,6 +26,7 @@ import {
 	Relationship,
 	Config,
 } from "@fosscord/util";
+import { Channel } from "@fosscord/util";
 import { Router, Response, Request } from "express";
 import { HTTPError } from "lambert-server";
 import { DiscordApiErrors } from "@fosscord/util";
@@ -101,7 +102,7 @@ router.post(
 router.delete("/:id", route({}), async (req: Request, res: Response) => {
 	const { id } = req.params;
 	if (id === req.user_id)
-		throw new HTTPError("You can't remove yourself as a friend");
+		throw new HTTPError("You can't remove yourself as a friend"); // watch me bitch
 
 	const user = await User.findOneOrFail({
 		where: { id: req.user_id },
@@ -272,6 +273,14 @@ async function updateRelationship(
 			user_id: id,
 		} as RelationshipAddEvent),
 	]);
+
+	// TODO: Create DM between incoming and outcoming friends
+
+	await Channel.createDMChannel(
+		[incoming_relationship.id, outgoing_relationship.id],
+		incoming_relationship.id,
+		"IfYouSeeThisRipleyFuckedUpTheApiLol",
+	);
 
 	return res.sendStatus(204);
 }
